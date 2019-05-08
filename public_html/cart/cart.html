@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section class="cart">
+
+            <h1>Your cart</h1>
+            <table>
+                <tr>
+                    <th>Qty</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr class="cart_row">
+                    <td>
+                        <form action="<c:url value='/order/updateItem'/>" method="post">
+                            <input type="hidden" name="productCode" 
+                                   value="<c:out value='${item.product.code}'/>">
+                            <input type=text name="quantity" 
+                                   value="<c:out value='${item.quantity}'/>" id="quantity">
+                            <input type="submit" value="Update">
+                        </form>                  
+                    </td>
+                    <td>${item.product.description}</td>
+                    <td>${item.product.priceCurrencyFormat}</td>
+                    <td>${item.totalCurrencyFormat}</td>
+                    <td>
+                        <form action="<c:url value='/order/removeItem'/>" method="post">
+                            <input type="hidden" name="productCode" 
+                                   value="<c:out value='${item.product.code}'/>">
+                            <input type="submit" value="Remove">
+                        </form>                  
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p><b>To change the quantity for an item</b>, enter the new quantity 
+                            and click on the Update button.</p>
+                        <p><b>To remove an item</b>, click on the Remove button.</p>
+                    </td>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+            </table>
+
+            <form action="<c:url value='/catalog'/>" method="get" id="float_left">
+                <input type="submit" value="Continue Shopping">
+            </form>
+
+        </section>
+    </body>
+</html>
